@@ -5,7 +5,6 @@ import { AsyncTypeahead } from "react-bootstrap-typeahead";
 function LocationSearch({ setWeather }) {
     const [isLoading, setIsLoading] = useState(false);
     const [locations, setLocations] = useState([]);
-    const [selected, setSelected] = useState("");
 
     // For converting ISO-3166 alpha-2 to country names
     const countries = require("i18n-iso-countries");
@@ -54,9 +53,13 @@ function LocationSearch({ setWeather }) {
         if (loc.length > 0) {
             axios
                 .get(
-                    `https://api.openweathermap.org/data/2.5/onecall?lat=${loc[0].lat}&lon=${loc[0].lon}&exclude=minutely,hourly,alerts&appid=${process.env.REACT_APP_API_KEY}`
+                    `https://api.openweathermap.org/data/2.5/onecall?lat=${loc[0].lat}&lon=${loc[0].lon}&units=metric&exclude=minutely,hourly,alerts&appid=${process.env.REACT_APP_API_KEY}`
                 )
-                .then((response) => setWeather(response.data));
+                .then((response) => {
+                    var res = response.data;
+                    res["name"] = loc[0].name;
+                    setWeather(response.data);
+                });
         }
     };
 
