@@ -1,18 +1,16 @@
 import React, { useState } from "react";
-import Toast from "react-bootstrap/Toast";
 import Container from "react-bootstrap/Container";
-import Button from "react-bootstrap/Button";
 
-import LocationInput from "./components/LocationInput";
-import WeatherDisplay from "./components/WeatherDisplay";
+import LocationSearch from "./components/LocationSearch";
+import WeatherCard from "./components/WeatherCard";
 
 function App() {
-    const [weatherData, setWeatherData] = useState();
+    const [weatherData, setWeatherData] = useState({});
 
     return (
         <Container className="p-5" fluid="sm">
-            <LocationInput setWeatherData />
-            <WeatherDisplay weatherData />
+            <LocationSearch setWeather={setWeatherData} />
+            <WeatherCard weather={weatherData} />
         </Container>
     );
 }
