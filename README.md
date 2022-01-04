@@ -3,7 +3,7 @@
 ## Setup
 
 1. Generate an [OpenWeatherMap API key](https://openweathermap.org/api).
-2. Create a `.env` file in the root directory with the contents
+2. Create a file named `.env` in the root directory with the following contents:
 ```
 // .env
 REACT_APP_API_KEY = <your API key here>
