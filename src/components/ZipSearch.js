@@ -31,12 +31,10 @@ function ZipSearch({ setWeather }) {
                 if (error.response) {
                     if (error.response.status === 404) {
                         setError("Postal code not found");
-                    }
-                    else {
+                    } else {
                         setError(`Error: ${error.response.data.message}`);
                     }
-                }
-                else {
+                } else {
                     setError("Couldn't fetch weather data");
                 }
             });
@@ -69,7 +67,11 @@ function ZipSearch({ setWeather }) {
                     onChange={(e) => setZip(e.target.value)}
                     onKeyPress={handleKeyPress}
                 />
-                {error ? <Form.Label style={{ color: "red" }}>{error}</Form.Label> : <Form.Label>Press Enter to search</Form.Label>}
+                {error ? (
+                    <Form.Label style={{ color: "red" }}>{error}</Form.Label>
+                ) : (
+                    <Form.Label>Press Enter to search</Form.Label>
+                )}
             </Form.Group>
         </Form>
     );
