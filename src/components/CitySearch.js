@@ -1,10 +1,11 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { AsyncTypeahead } from "react-bootstrap-typeahead";
 
-function LocationSearch({ setWeather }) {
+function CitySearch({ setWeather }) {
     const [isLoading, setIsLoading] = useState(false);
     const [locations, setLocations] = useState([]);
+    const [error, setError] = useState("");
 
     // For converting ISO-3166 alpha-2 to country names
     const countries = require("i18n-iso-countries");
@@ -78,4 +79,4 @@ function LocationSearch({ setWeather }) {
     );
 }
 
-export default LocationSearch;
+export default CitySearch;

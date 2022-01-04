@@ -1,0 +1,18 @@
+.weather-card {
+    margin-top: 20px;
+}
+
+.weather-info {
+    padding-top: 20px;
+}
+
+.current-temp-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.weather-table {
+    vertical-align: middle !important;
+}

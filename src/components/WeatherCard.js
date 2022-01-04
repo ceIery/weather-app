@@ -4,12 +4,13 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import WeeklyWeather from "./WeeklyWeather";
+import "./WeatherCard.css";
 
 function WeatherCard({ data }) {
     // Check if data is loaded
     if (Object.keys(data).length === 0) {
         return (
-            <Card className="text-center">
+            <Card className="weather-card text-center">
                 <Card.Body>Enter a location above to get started</Card.Body>
             </Card>
         );
@@ -19,9 +20,9 @@ function WeatherCard({ data }) {
     const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 
     return (
-        <Card>
+        <Card className="weather-card">
             <Container fluid>
-                <Row>
+                <Row className="weather-info">
                     <Col className="current-temp-data">
                         <img
                             src={`http://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png`}
@@ -43,7 +44,7 @@ function WeatherCard({ data }) {
                             </Row>
                         </Container>
                     </Col>
-                    <Col className="location-description" xs={10}>
+                    <Col className="weather-info" xs={10}>
                         <Row>
                             <h1>{data.city}</h1>
                         </Row>
@@ -54,18 +55,12 @@ function WeatherCard({ data }) {
                                 )}
                             </h5>
                         </Row>
-                        <Row className="misc-weather-data">
-                            <Col>
-                                <h6>{`Wind: ${data.current.wind_speed} m/s`}</h6>
-                            </Col>
-                            <Col>
-                                <h6>{`Precipitation: ${
-                                    data.daily[0].pop * 100
-                                }%`}</h6>
-                            </Col>
-                            <Col>
-                                <h6>{`Humidity: ${data.current.humidity}%`}</h6>
-                            </Col>
+                        <Row className="weather-info">
+                            <h6>{`Wind: ${data.current.wind_speed} m/s`}</h6>
+                            <h6>{`Precipitation: ${
+                                data.daily[0].pop * 100
+                            }%`}</h6>
+                            <h6>{`Humidity: ${data.current.humidity}%`}</h6>
                         </Row>
                     </Col>
                 </Row>

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import Table from "react-bootstrap/Table";
+import "./WeatherCard.css";
 
 function WeeklyWeather({ data }) {
     // Weekly data includes the current day, so we need to remove it
     const nextWeek = data.daily.slice(1);
 
     return (
-        <Table responsive>
+        <Table className="weather-table" responsive>
             <thead>
                 <tr>
                     <th>Date</th>
