@@ -10,7 +10,7 @@ function App() {
     return (
         <Container className="p-5" fluid="sm">
             <LocationSearch setWeather={setWeatherData} />
-            <WeatherCard weather={weatherData} />
+            <WeatherCard data={weatherData} />
         </Container>
     );
 }

@@ -39,6 +39,7 @@ function LocationSearch({ setWeather }) {
                     return {
                         id: index.toString(),
                         name: displayName,
+                        city: city,
                         lat: lat,
                         lon: lon,
                     };
@@ -57,7 +58,7 @@ function LocationSearch({ setWeather }) {
                 )
                 .then((response) => {
                     var res = response.data;
-                    res["name"] = loc[0].name;
+                    res["city"] = loc[0].city;
                     setWeather(response.data);
                 });
         }

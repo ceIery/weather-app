@@ -1,14 +1,78 @@
 import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
-import CurrentWeather from "./CurrentWeather";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import WeeklyWeather from "./WeeklyWeather";
 
-function WeatherCard({ weather }) {
-    console.log(weather);
+function WeatherCard({ data }) {
+    // Check if data is loaded
+    if (Object.keys(data).length === 0) {
+        return (
+            <Card className="text-center">
+                <Card.Body>Enter a location above to get started</Card.Body>
+            </Card>
+        );
+    }
+
+    // Capitalize first letter of a string
+    const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 
     return (
-        <Card className="text-center">
-            <Card.Body>Enter a location above to get started</Card.Body>
-            <CurrentWeather weather={weather} />
+        <Card>
+            <Container fluid>
+                <Row>
+                    <Col className="current-temp-data">
+                        <img
+                            src={`http://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png`}
+                            alt={data.current.weather[0].description}
+                        />
+                        <Container className="current-temp-data">
+                            <Row>
+                                <h1>{`${Math.round(data.current.temp)}°`}</h1>
+                            </Row>
+                            <Row>
+                                <h6>{`Min: ${Math.round(
+                                    data.daily[0].temp.min
+                                )}°`}</h6>
+                            </Row>
+                            <Row>
+                                <h6>{`Max: ${Math.round(
+                                    data.daily[0].temp.max
+                                )}°`}</h6>
+                            </Row>
+                        </Container>
+                    </Col>
+                    <Col className="location-description" xs={10}>
+                        <Row>
+                            <h1>{data.city}</h1>
+                        </Row>
+                        <Row>
+                            <h5>
+                                {capitalize(
+                                    data.current.weather[0].description
+                                )}
+                            </h5>
+                        </Row>
+                        <Row className="misc-weather-data">
+                            <Col>
+                                <h6>{`Wind: ${data.current.wind_speed} m/s`}</h6>
+                            </Col>
+                            <Col>
+                                <h6>{`Precipitation: ${
+                                    data.daily[0].pop * 100
+                                }%`}</h6>
+                            </Col>
+                            <Col>
+                                <h6>{`Humidity: ${data.current.humidity}%`}</h6>
+                            </Col>
+                        </Row>
+                    </Col>
+                </Row>
+                <Row>
+                    <WeeklyWeather data={data} />
+                </Row>
+            </Container>
         </Card>
     );
 }
